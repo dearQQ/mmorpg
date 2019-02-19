@@ -1,0 +1,47 @@
+
+2019-02-19 09:48:27,760 [1] [INFO ] [GameServer] £ºGame Server Init
+2019-02-19 15:08:35,978 [1] [INFO ] [GameServer] £ºGame Server Init
+2019-02-19 15:08:46,017 [1] [INFO ] [GameServer] £ºGame Server Exiting...
+2019-02-19 15:08:46,059 [1] [INFO ] [GameServer] £ºGame Server Exited
+2019-02-19 15:11:43,578 [1] [INFO ] [GameServer] £ºGame Server Init
+2019-02-19 15:11:57,371 [1] [INFO ] [GameServer] £ºGame Server Exiting...
+2019-02-19 15:11:57,390 [1] [INFO ] [GameServer] £ºGame Server Exited
+2019-02-19 15:18:18,713 [1] [INFO ] [GameServer] £ºGame Server Init
+2019-02-19 15:49:17,862 [1] [INFO ] [GameServer] £ºGame Server Init
+2019-02-19 15:49:18,107 [1] [WARN ] [GameServer] £ºStarting Listener...
+2019-02-19 15:49:18,511 [8] [WARN ] [GameServer] £ºMessageDistribute thread start
+2019-02-19 15:49:18,511 [6] [WARN ] [GameServer] £ºMessageDistribute thread start
+2019-02-19 15:49:18,513 [7] [WARN ] [GameServer] £ºMessageDistribute thread start
+2019-02-19 15:49:18,514 [5] [WARN ] [GameServer] £ºMessageDistribute thread start
+2019-02-19 15:49:19,641 [9] [WARN ] [GameServer] £ºMessageDistribute thread start
+2019-02-19 15:49:20,640 [10] [WARN ] [GameServer] £ºMessageDistribute thread start
+2019-02-19 15:49:21,640 [11] [WARN ] [GameServer] £ºMessageDistribute thread start
+2019-02-19 15:49:22,640 [12] [WARN ] [GameServer] £ºMessageDistribute thread start
+2019-02-19 15:49:22,651 [1] [WARN ] [GameServer] £ºNetService Started
+2019-02-19 15:49:34,544 [3] [WARN ] [GameServer] £ºClient[127.0.0.1:64163]] Connected
+2019-02-19 16:00:45,808 [1] [INFO ] [GameServer] £ºGame Server Init
+2019-02-19 16:00:46,479 [1] [WARN ] [GameServer] £ºStarting Listener...
+2019-02-19 16:00:46,697 [5] [WARN ] [GameServer] £ºMessageDistribute thread start
+2019-02-19 16:00:46,697 [6] [WARN ] [GameServer] £ºMessageDistribute thread start
+2019-02-19 16:00:46,697 [8] [WARN ] [GameServer] £ºMessageDistribute thread start
+2019-02-19 16:00:46,698 [7] [WARN ] [GameServer] £ºMessageDistribute thread start
+2019-02-19 16:00:47,489 [9] [WARN ] [GameServer] £ºMessageDistribute thread start
+2019-02-19 16:00:48,488 [10] [WARN ] [GameServer] £ºMessageDistribute thread start
+2019-02-19 16:00:49,489 [11] [WARN ] [GameServer] £ºMessageDistribute thread start
+2019-02-19 16:00:50,488 [12] [WARN ] [GameServer] £ºMessageDistribute thread start
+2019-02-19 16:00:50,533 [1] [WARN ] [GameServer] £ºNetService Started
+2019-02-19 16:01:05,996 [3] [WARN ] [GameServer] £ºClient[127.0.0.1:65068]] Connected
+2019-02-19 16:01:10,980 [3] [WARN ] [GameServer] £ºClient[] Disconnected
+2019-02-19 16:46:40,311 [1] [INFO ] [GameServer] £ºGame Server Init
+2019-02-19 16:46:40,958 [1] [WARN ] [GameServer] £ºStarting Listener...
+2019-02-19 16:46:41,307 [7] [WARN ] [GameServer] £ºMessageDistribute thread start
+2019-02-19 16:46:41,307 [6] [WARN ] [GameServer] £ºMessageDistribute thread start
+2019-02-19 16:46:41,307 [5] [WARN ] [GameServer] £ºMessageDistribute thread start
+2019-02-19 16:46:41,307 [8] [WARN ] [GameServer] £ºMessageDistribute thread start
+2019-02-19 16:46:42,969 [9] [WARN ] [GameServer] £ºMessageDistribute thread start
+2019-02-19 16:46:43,968 [10] [WARN ] [GameServer] £ºMessageDistribute thread start
+2019-02-19 16:46:44,967 [11] [WARN ] [GameServer] £ºMessageDistribute thread start
+2019-02-19 16:46:45,967 [12] [WARN ] [GameServer] £ºMessageDistribute thread start
+2019-02-19 16:46:45,994 [1] [WARN ] [GameServer] £ºNetService Started
+2019-02-19 16:47:05,502 [3] [WARN ] [GameServer] £ºClient[127.0.0.1:52667]] Connected
+2019-02-19 16:47:09,583 [3] [WARN ] [GameServer] £ºClient[] Disconnected
