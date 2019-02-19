@@ -15,3 +15,4 @@ E:\MyMMO\Lib\Protocol\obj\Debug\Protocol.csproj.CoreCompileInputs.cache
 E:\MyMMO\Lib\Protocol\obj\Debug\Protocol.csproj.CopyComplete
 E:\MyMMO\Lib\Protocol\obj\Debug\Protocol.dll
 E:\MyMMO\Lib\Protocol\obj\Debug\Protocol.pdb
+E:\MyMMO\Lib\Protocol\obj\Debug\Protocol.csprojAssemblyReference.cache

@@ -22,7 +22,6 @@
       <End Role="Player" EntitySet="Players" />
       <End Role="Character" EntitySet="Characters" />
     </AssociationSet>
-    <EntitySet Name="Tests" EntityType="ExtremeWorldModel.Test" />
   </EntityContainer>
   <EntityType Name="TPlayer">
     <Key>
@@ -53,10 +52,4 @@
     <End Type="ExtremeWorldModel.TPlayer" Role="Player" Multiplicity="1" />
     <End Type="ExtremeWorldModel.TCharacter" Role="Character" Multiplicity="*" />
   </Association>
-  <EntityType Name="Test">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-  </EntityType>
 </Schema>

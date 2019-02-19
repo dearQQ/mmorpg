@@ -119,6 +119,7 @@ message NetMessageRequest{
 
 	MapEntitySyncRequest mapEntitySync = 8;
 	MapTeleportRequest mapTeleport = 9;
+	FirstTestRequest firstTestReq  =10;
 }
 
 message NetMessageResponse{
@@ -132,6 +133,7 @@ message NetMessageResponse{
 	MapCharacterLeaveResponse mapCharacterLeave = 7;
 
 	MapEntitySyncResponse mapEntitySync = 8;
+	FirstTestResponse firstTestRes = 9;
 	
 }
 
@@ -223,4 +225,12 @@ message MapEntitySyncResponse
 message MapTeleportRequest
 {
 	int32 teleporterId = 1;
+}
+message FirstTestRequest
+{
+	string text = 1;
+}
+message FirstTestResponse
+{
+	string text = 1;
 }

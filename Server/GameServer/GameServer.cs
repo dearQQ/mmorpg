@@ -22,6 +22,7 @@ namespace GameServer
         public bool Init()
         {
             DBService.Instance.Init();
+            HelloWorldService.Instance.Init();
             netService = new NetService();
             netService.Init(8000);
             thread = new Thread(new ThreadStart(this.Update));
@@ -31,6 +32,7 @@ namespace GameServer
         public void Start()
         {
             netService.Start();
+            HelloWorldService.Instance.Start();
             running = true;
             thread.Start();
         }
