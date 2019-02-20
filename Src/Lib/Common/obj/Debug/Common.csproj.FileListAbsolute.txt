@@ -26,3 +26,17 @@ E:\MyMMO\Lib\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
 E:\MyMMO\Lib\Common\obj\Debug\Common.csproj.CopyComplete
 E:\MyMMO\Lib\Common\obj\Debug\Common.dll
 E:\MyMMO\Lib\Common\obj\Debug\Common.pdb
+E:\MyMMO\Src\Lib\Common\bin\Debug\Common.dll
+E:\MyMMO\Src\Lib\Common\bin\Debug\Common.pdb
+E:\MyMMO\Src\Lib\Common\bin\Debug\log4net.dll
+E:\MyMMO\Src\Lib\Common\bin\Debug\protobuf-net.dll
+E:\MyMMO\Src\Lib\Common\bin\Debug\Protocol.dll
+E:\MyMMO\Src\Lib\Common\bin\Debug\UnityEngine.dll
+E:\MyMMO\Src\Lib\Common\bin\Debug\Protocol.pdb
+E:\MyMMO\Src\Lib\Common\bin\Debug\log4net.xml
+E:\MyMMO\Src\Lib\Common\bin\Debug\protobuf-net.xml
+E:\MyMMO\Src\Lib\Common\obj\Debug\Common.csprojAssemblyReference.cache
+E:\MyMMO\Src\Lib\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+E:\MyMMO\Src\Lib\Common\obj\Debug\Common.csproj.CopyComplete
+E:\MyMMO\Src\Lib\Common\obj\Debug\Common.dll
+E:\MyMMO\Src\Lib\Common\obj\Debug\Common.pdb

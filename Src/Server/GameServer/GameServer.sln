@@ -8,9 +8,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameServer", "GameServer\Ga
 		{ECF59EEE-D33E-41EE-B2F8-B59BCDBA856F} = {ECF59EEE-D33E-41EE-B2F8-B59BCDBA856F}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "..\Lib\Common\Common.csproj", "{CE169E52-A80E-4C19-B75B-823907B4ECEF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "..\..\Lib\Common\Common.csproj", "{CE169E52-A80E-4C19-B75B-823907B4ECEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Protocol", "..\Lib\Protocol\Protocol.csproj", "{ECF59EEE-D33E-41EE-B2F8-B59BCDBA856F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Protocol", "..\..\Lib\Protocol\Protocol.csproj", "{ECF59EEE-D33E-41EE-B2F8-B59BCDBA856F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

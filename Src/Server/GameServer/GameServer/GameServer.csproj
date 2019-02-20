@@ -118,7 +118,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Services\DBService.cs" />
-    <Compile Include="Services\HelloWorldService.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Core\Vector3Int.cs" />
     <Compile Include="TCharacter.cs">
@@ -186,11 +185,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Lib\Common\Common.csproj">
+    <ProjectReference Include="..\..\..\Lib\Common\Common.csproj">
       <Project>{ce169e52-a80e-4c19-b75b-823907b4ecef}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Lib\Protocol\Protocol.csproj">
+    <ProjectReference Include="..\..\..\Lib\Protocol\Protocol.csproj">
       <Project>{ecf59eee-d33e-41ee-b2f8-b59bcdba856f}</Project>
       <Name>Protocol</Name>
     </ProjectReference>

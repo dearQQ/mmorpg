@@ -16,3 +16,12 @@ E:\MyMMO\Lib\Protocol\obj\Debug\Protocol.csproj.CopyComplete
 E:\MyMMO\Lib\Protocol\obj\Debug\Protocol.dll
 E:\MyMMO\Lib\Protocol\obj\Debug\Protocol.pdb
 E:\MyMMO\Lib\Protocol\obj\Debug\Protocol.csprojAssemblyReference.cache
+E:\MyMMO\Src\Lib\Protocol\bin\Debug\Protocol.dll
+E:\MyMMO\Src\Lib\Protocol\bin\Debug\Protocol.pdb
+E:\MyMMO\Src\Lib\Protocol\bin\Debug\protobuf-net.dll
+E:\MyMMO\Src\Lib\Protocol\bin\Debug\protobuf-net.xml
+E:\MyMMO\Src\Lib\Protocol\obj\Debug\Protocol.csproj.CoreCompileInputs.cache
+E:\MyMMO\Src\Lib\Protocol\obj\Debug\Protocol.csproj.CopyComplete
+E:\MyMMO\Src\Lib\Protocol\obj\Debug\Protocol.dll
+E:\MyMMO\Src\Lib\Protocol\obj\Debug\Protocol.pdb
+E:\MyMMO\Src\Lib\Protocol\obj\Debug\Protocol.csprojAssemblyReference.cache
