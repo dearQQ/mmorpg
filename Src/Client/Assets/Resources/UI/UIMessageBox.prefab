@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 223420220395199798}
   - component: {fileID: 114343322507700096}
   - component: {fileID: 114530391675336540}
-  - component: {fileID: 114104013844657164}
+  - component: {fileID: 114747357330860762}
   m_Layer: 5
   m_Name: UIMessageBox
   m_TagString: Untagged
@@ -277,25 +277,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114104013844657164
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1813644301806410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e88aa8f4fc5e3fa4abc0eaba5556b48e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: {fileID: 114482953053854634}
-  message: {fileID: 114966349918730754}
-  icons:
-  - {fileID: 114948707115804578}
-  - {fileID: 114617132374105478}
-  - {fileID: 114074642495481368}
-  buttonYes: {fileID: 114149779274491158}
-  buttonNo: {fileID: 114926987955455140}
 --- !u!114 &114149779274491158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -608,6 +589,28 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114747357330860762
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1813644301806410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92211b19cb34935489387426780661bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: {fileID: 114482953053854634}
+  message: {fileID: 114966349918730754}
+  icons:
+  - {fileID: 114948707115804578}
+  - {fileID: 114617132374105478}
+  - {fileID: 114074642495481368}
+  buttonYes: {fileID: 114149779274491158}
+  buttonNo: {fileID: 114926987955455140}
+  buttonClose: {fileID: 0}
+  buttonYesTitle: {fileID: 114221949012556840}
+  buttonNoTitle: {fileID: 114820243559597014}
 --- !u!114 &114820243559597014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1064,8 +1067,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 52.5, y: 11.5}
-  m_SizeDelta: {x: -168.9, y: -203}
+  m_AnchoredPosition: {x: -0.97494507, y: 11.5}
+  m_SizeDelta: {x: -61.95, y: -203}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224968469829049894
 RectTransform:

@@ -22,7 +22,9 @@ namespace GameServer
         public bool Init()
         {
             DBService.Instance.Init();
+
             //HelloWorldService.Instance.Init();
+            UserService.Instance.Init();
             netService = new NetService();
             netService.Init(8000);
             thread = new Thread(new ThreadStart(this.Update));

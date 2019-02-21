@@ -63,6 +63,7 @@ namespace Network
         void Awake()
         {
             running = true;
+            DontDestroyOnLoad(this);
         }
 
         protected override void OnStart()
