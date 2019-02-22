@@ -31,6 +31,7 @@ namespace GameServer.Services
                 message.Response.userRegister.Result = Result.Failed;
                 message.Response.userRegister.Errormsg = "用户已存在.";
             }
+           
             else
             {
                 TPlayer player = DBService.Instance.Entities.Players.Add(new TPlayer());
@@ -52,8 +53,16 @@ namespace GameServer.Services
             TUser user = DBService.Instance.Entities.Users.Where(u => u.Username == request.User).FirstOrDefault();
             if (user != null)
             {
-                message.Response.userLogin.Result = Result.Success;
-                message.Response.userLogin.Errormsg = "none";
+                if (user.Password != request.Passward)
+                {
+                    message.Response.userLogin.Result = Result.Failed;
+                    message.Response.userLogin.Errormsg = "密码不正确";
+                }
+                else
+                {
+                    message.Response.userLogin.Result = Result.Success;
+                    message.Response.userLogin.Errormsg = "none";
+                }
             }
             else
             {

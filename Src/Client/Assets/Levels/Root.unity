@@ -187,7 +187,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 56789509}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1602153520}
+        m_MethodName: OnClickLogin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &56789509
@@ -947,12 +958,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf1678d7481c0840a547cbd0348fa1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RegisterUI: {fileID: 0}
+  RegisterUI: {fileID: 403441586}
   btnRegister: {fileID: 562355440}
-  btnLogin: {fileID: 0}
   txtUser: {fileID: 1917123489}
   txtPassword: {fileID: 317920757}
   txtPasswordAffirm: {fileID: 1653459451}
+  txtLoginUser: {fileID: 2032231370}
+  txtLoginPassword: {fileID: 2034918241}
+  isRemember: {fileID: 509633233}
 --- !u!222 &403441589
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3172,6 +3185,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed551d5806e954649af147147e6e6212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRemember: {fileID: 509633233}
+  txtUser: {fileID: 2032231370}
+  txtPassword: {fileID: 2034918241}
+  btnLogin: {fileID: 56789508}
 --- !u!1 &1623316571
 GameObject:
   m_ObjectHideFlags: 0
