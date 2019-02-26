@@ -20,17 +20,14 @@ public class UILogin : MonoBehaviour
     private void Start()
     {
         bool bRemember = PlayerPrefs.GetInt("isRemember") == 1;
-
-        Debug.Log(PlayerPrefs.GetInt("isRemember"));
-        Debug.Log(bRemember);
         isRemember.isOn = bRemember;
         if (bRemember)
         {
             txtUser.text = PlayerPrefs.GetString("user","");
             txtPassword.text = PlayerPrefs.GetString("password","");
         }
-        UserServive.Instance.Connect();
-        UserServive.Instance.OnLogin = this.OnLogin;
+        UserService.Instance.Connect();
+        UserService.Instance.OnLogin = this.OnLogin;
     }
 
     public void OnClickLogin()
@@ -47,19 +44,19 @@ public class UILogin : MonoBehaviour
         }
         
         PlayerPrefs.SetInt("isRemember",isRemember.isOn ? 1 : 0);
-        UserServive.Instance.Login(txtUser.text,txtPassword.text);
+        UserService.Instance.Login(txtUser.text,txtPassword.text);
     }
 
     public void OnLogin(Result res,string msg)
     {
         if (res == Result.Success)
         {
-            MessageBox.Show("登录成功", "用户登录");
             if (isRemember.isOn)
             {
                 PlayerPrefs.SetString("user", txtUser.text);
                 PlayerPrefs.SetString("password", txtPassword.text);
             }
+            SceneManager.Instance.LoadScene("CharSelect");
         }
         else
             MessageBox.Show(msg, "用户登录", MessageBoxType.Error);

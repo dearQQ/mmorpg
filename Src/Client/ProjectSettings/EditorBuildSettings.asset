@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Levels/Root.unity
     guid: eacb6278c2f59024e93a04969b565e9c
   - enabled: 1
-    path: Assets/Levels/CharSelect.unity
-    guid: f571aa71e99d99e4d9fb442ea623be37
+    path: Assets/Levels/CharSelect/CharSelect.unity
+    guid: 97963590e59ede0488c2788b162af911
   m_configObjects: {}

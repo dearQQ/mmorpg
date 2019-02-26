@@ -5,27 +5,33 @@ using System.Text;
 using Common;
 using Network;
 using UnityEngine;
-
+using Models;
 using SkillBridge.Message;
 
 namespace Services
 {
-    class UserServive : Singleton<UserServive>
+    class UserService : Singleton<UserService>
     {
         public Action<Result, string> OnRegister;
         public Action<Result, string> OnLogin;
+        public Action<Result, string> OnCreateCharacter;
+        public Action<Result, string> OnGameEnter;
 
-        public UserServive()
+        public UserService()
         {
             NetClient.Instance.OnConnect += this.OnConnect;
             MessageDistributer.Instance.Subscribe<UserRegisterResponse>(this.OnRegisterResponse);
             MessageDistributer.Instance.Subscribe<UserLoginResponse>(this.OnLoginResponse);
+            MessageDistributer.Instance.Subscribe<UserCreateCharacterResponse>(this.OnCreateCharacterResponse);
+            MessageDistributer.Instance.Subscribe<UserGameEnterResponse>(this.OnGameEnterResponse);
         }
 
         public void Dispose()
         {
             MessageDistributer.Instance.Unsubscribe<UserRegisterResponse>(this.OnRegisterResponse);
             MessageDistributer.Instance.Unsubscribe<UserLoginResponse>(this.OnLoginResponse);
+            MessageDistributer.Instance.Unsubscribe<UserCreateCharacterResponse>(this.OnCreateCharacterResponse);
+            MessageDistributer.Instance.Unsubscribe<UserGameEnterResponse>(this.OnGameEnterResponse);
         }
 
         public void Connect()
@@ -70,10 +76,46 @@ namespace Services
 
         void OnLoginResponse(object sender, UserLoginResponse response)
         {
+            if (response.Result == Result.Success)
+                User.Instance.SetupUserInfo(response.Userinfo);
             if (OnLogin != null)
             {
                 this.OnLogin(response.Result, response.Errormsg);
             }
+        }
+
+        /// <summary>
+        /// 创建角色
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="type">角色职业</param>
+        public void CreateCharacter(string name,int job)
+        {
+            NetMessage netMessage = new NetMessage();
+            netMessage.Request = new NetMessageRequest();
+            netMessage.Request.createChar = new UserCreateCharacterRequest();
+            netMessage.Request.createChar.Class = (CharacterClass)job;
+            netMessage.Request.createChar.Name = name;
+            NetClient.Instance.SendMessage(netMessage);
+        }
+        void OnCreateCharacterResponse(object sender,UserCreateCharacterResponse response)
+        {
+            if (this.OnCreateCharacter != null)
+                this.OnCreateCharacter(response.Result,response.Errormsg);
+        }
+
+        public void GameEnter(int index)
+        {
+            NetMessage netMessage = new NetMessage();
+            netMessage.Request = new NetMessageRequest();
+            netMessage.Request.gameEnter = new UserGameEnterRequest();
+            netMessage.Request.gameEnter.characterIdx = index;
+            NetClient.Instance.SendMessage(netMessage);
+        }
+        void OnGameEnterResponse(object sender,UserGameEnterResponse response)
+        {
+            if (this.OnGameEnter != null)
+                this.OnGameEnter(response.Result, response.Errormsg);
         }
     }
 

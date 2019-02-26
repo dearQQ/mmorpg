@@ -10,7 +10,7 @@ public class SceneManager : MonoSingleton<SceneManager>
     // Use this for initialization
     protected override void OnStart()
     {
-        
+        DontDestroyOnLoad(this);
     }
 
     // Update is called once per frame
