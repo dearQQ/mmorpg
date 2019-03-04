@@ -76,6 +76,7 @@ namespace GameServer.Services
                         info.Id = c.ID;
                         info.Name = c.Name;
                         info.Class = (CharacterClass)c.Class;
+                        info.Tid = c.TID;
                         message.Response.userLogin.Userinfo.Player.Characters.Add(info);
                     }
                 }
@@ -91,13 +92,15 @@ namespace GameServer.Services
         }
         void OnCreateCharacter(NetConnection<NetSession> sender, UserCreateCharacterRequest request)
         {
+            Log.InfoFormat("OnCreateCharacter:昵称{0}，角色职业{1}", request.Name,request.Class);
             TCharacter character = new TCharacter();
             character.Name = request.Name;
             character.TID = (int)request.Class;
             character.MapID = 1;
-            character.MapPosX = 0;
-            character.MapPosY = 0;
-            character.MapPosZ = 0;
+            character.Class = (int)request.Class;
+            character.MapPosX = 4700;
+            character.MapPosY = 4500;
+            character.MapPosZ = 800;
             DBService.Instance.Entities.Characters.Add(character);
             sender.Session.User.Player.Characters.Add(character);
             DBService.Instance.Entities.SaveChanges();
@@ -108,12 +111,23 @@ namespace GameServer.Services
             netMessage.Response.createChar = new UserCreateCharacterResponse();
             netMessage.Response.createChar.Result = Result.Success;
             netMessage.Response.createChar.Errormsg = "none";
+            foreach (var c in sender.Session.User.Player.Characters)
+            {
+                NCharacterInfo info = new NCharacterInfo();
+                info.Id = c.ID;
+                info.Name = c.Name;
+                info.Type = CharacterType.Player;
+                info.Class = (CharacterClass)c.Class;
+                info.Tid = c.TID;
+                netMessage.Response.createChar.Characters.Add(info);
+            }
             byte[] data = PackageHandler.PackMessage(netMessage);
             sender.SendData(data, 0, data.Length);
         }
         void OnGameEnter(NetConnection<NetSession> sender, UserGameEnterRequest request)
         {
-            TCharacter character = DBService.Instance.Entities.Characters.Where(u => u.ID == request.characterIdx).FirstOrDefault();
+            TCharacter Tchar = sender.Session.User.Player.Characters.ElementAt(request.characterIdx);
+            Character character = CharacterManager.Instance.AddCharacter(Tchar);
             if (character != null)
             {
                 NetMessage netMessage = new NetMessage();
@@ -123,7 +137,8 @@ namespace GameServer.Services
                 netMessage.Response.gameEnter.Errormsg = "none";
                 byte[] data = PackageHandler.PackMessage(netMessage);
                 sender.SendData(data, 0, data.Length);
-            }   
+            }
+            MapManager.Instance[Tchar.MapID].CharacterEnter(sender, character);
         }
     }
 }

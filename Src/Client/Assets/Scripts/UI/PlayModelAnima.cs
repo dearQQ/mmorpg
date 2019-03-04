@@ -5,9 +5,13 @@ using UnityEngine;
 public class PlayModelAnima : MonoBehaviour {
 
     Animator anima;
+    private void Awake()
+    {
+        anima = this.transform.GetComponent<Animator>();
+    }
     // Use this for initialization
     void Start () {
-        anima = this.transform.GetComponent<Animator>();
+       
 	}
     private void OnEnable()
     {

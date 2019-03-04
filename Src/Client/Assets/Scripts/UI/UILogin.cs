@@ -47,7 +47,7 @@ public class UILogin : MonoBehaviour
         UserService.Instance.Login(txtUser.text,txtPassword.text);
     }
 
-    public void OnLogin(Result res,string msg)
+    void OnLogin(Result res,string msg)
     {
         if (res == Result.Success)
         {

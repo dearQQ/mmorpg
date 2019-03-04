@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Services;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,6 +32,7 @@ public class UILoading : MonoBehaviour {
         yield return new WaitForSeconds(1f);
         TipsUI.SetActive(false);
         yield return DataManager.Instance.LoadData();
+        MapService.Instance.Init();
         
         for (int i = 0; i < 100; i++)
         {
