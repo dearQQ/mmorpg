@@ -108,12 +108,12 @@ namespace Services
                 this.OnCreateCharacter(response.Result,response.Errormsg);
         }
 
-        public void GameEnter(int index)
+        public void GameEnter(int type)
         {
             NetMessage netMessage = new NetMessage();
             netMessage.Request = new NetMessageRequest();
             netMessage.Request.gameEnter = new UserGameEnterRequest();
-            netMessage.Request.gameEnter.characterIdx = index;
+            netMessage.Request.gameEnter.characterIdx = type;
             NetClient.Instance.SendMessage(netMessage);
         }
         void OnGameEnterResponse(object sender,UserGameEnterResponse response)

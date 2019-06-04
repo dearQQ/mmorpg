@@ -5,6 +5,7 @@ using UnityEngine;
 using Entities;
 using Services;
 using SkillBridge.Message;
+using Models;
 
 public class GameObjectManager : MonoBehaviour
 {
@@ -57,8 +58,8 @@ public class GameObjectManager : MonoBehaviour
 
             go.transform.position = GameObjectTool.LogicToWorld(character.position);
             go.transform.forward = GameObjectTool.LogicToWorld(character.direction);
-            Characters[character.Info.Id] = go;
 
+            Characters[character.Info.Id] = go;
             EntityController ec = go.GetComponent<EntityController>();
             if (ec != null)
             {
@@ -71,16 +72,20 @@ public class GameObjectManager : MonoBehaviour
             {
                 if (character.Info.Id == Models.User.Instance.CurrentCharacter.Id)
                 {
+                    User.Instance.CurrentCharacterObject = go;
                     MainPlayerCamera.Instance.player = go;
                     pc.enabled = true;
                     pc.character = character;
                     pc.entityController = ec;
+                    UIMiniMap.Instance.Init();
                 }
                 else
                 {
                     pc.enabled = false;
                 }
             }
+            UINameBarManager.Instance.AddHeadBar(go.transform,character);
+
         }
     }
 }

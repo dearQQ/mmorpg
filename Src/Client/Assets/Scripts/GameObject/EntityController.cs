@@ -82,9 +82,7 @@ public class EntityController : MonoBehaviour
                 anim.SetBool("MoveForward", true);
                 break;
             case EntityEvent.MoveBack:
-                anim.SetBool("MoveBack " +
-                    "" +
-                    "", true);
+                anim.SetBool("MoveBack", true);
                 break;
             case EntityEvent.Jump:
                 anim.SetTrigger("Jump");

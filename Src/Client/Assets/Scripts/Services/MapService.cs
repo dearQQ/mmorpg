@@ -12,6 +12,12 @@ namespace Services
     class MapService : Singleton<MapService>, IDisposable
     {
         private int curMapId;
+
+        public int CurMapID
+        {
+            get { return curMapId; }
+        }
+
         public MapService()
         {
             MessageDistributer.Instance.Subscribe<MapCharacterEnterResponse>(this.OnMapCharacterEnter);
