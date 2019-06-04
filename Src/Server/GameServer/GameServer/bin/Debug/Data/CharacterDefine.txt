@@ -1,0 +1,59 @@
+{
+  "1": {
+    "TID": 1,
+    "Name": "战士",
+    "Type": "Normal",
+    "Class": "WARRIOR",
+    "Resource": "Character/Warrior",
+    "Description": "战士：从小接收魔鬼训练，身体强大，拥有极强的近战能力，生存能力极强！",
+    "InitLevel": 1,
+    "Speed": 300
+  },
+  "2": {
+    "TID": 2,
+    "Name": "法师",
+    "Type": "Normal",
+    "Class": "WIZARD",
+    "Resource": "Character/Wizard",
+    "Description": "法师：每天沉醉于魔法世界，身体孱弱，拥有超强的控制和远程输出能力！",
+    "InitLevel": 1,
+    "Speed": 300
+  },
+  "3": {
+    "TID": 3,
+    "Name": "弓箭手",
+    "Type": "Normal",
+    "Class": "ARCHER",
+    "Resource": "Character/Archer",
+    "Description": "弓箭手：森林中的精灵，超高灵活性，来无踪去无影，拥有极强的远程输出能力！",
+    "InitLevel": 1,
+    "Speed": 300
+  },
+  "1001": {
+    "TID": 1001,
+    "Name": "恶鬼",
+    "Type": "Normal",
+    "Class": "WARRIOR",
+    "Resource": "Monster/M1001",
+    "InitLevel": 1,
+    "Speed": 300
+  },
+  "1002": {
+    "TID": 1002,
+    "Name": "-",
+    "Type": "Normal",
+    "Class": "WIZARD",
+    "Resource": "Monster/M1002",
+    "InitLevel": 1,
+    "Speed": 300
+  },
+  "1003": {
+    "TID": 1003,
+    "Name": "-",
+    "Type": "Normal",
+    "Class": "ARCHER",
+    "Resource": "Monster/M1003",
+    "InitLevel": 1,
+    "Speed": 300
+  }
+}

@@ -107,6 +107,7 @@ namespace Network
         { }
         /// <summary>
         /// Listens for socket connection on a given address and port.
+        /// 
         /// </summary>
         /// <param name="address">The address to listen on.</param>
         /// <param name="port">The port to listen on.</param>
@@ -122,7 +123,7 @@ namespace Network
         public TcpSocketListener(IPEndPoint endPoint, Int32 connectionBacklog)
         {
             this.endPoint = endPoint;
-
+            this.connectionBacklog = connectionBacklog;
             args = new SocketAsyncEventArgs();
             args.Completed += OnSocketAccepted;
         }

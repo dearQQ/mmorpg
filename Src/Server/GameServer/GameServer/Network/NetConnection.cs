@@ -31,32 +31,20 @@
 using System;
 using System.Net;
 using System.Net.Sockets;
-
+using Common;
 namespace Network
 {
     /// <summary>
     /// A connection to our server.
     /// </summary>
     public class NetConnection<T>
+        where T:new ()
     {
-        /// <summary>
-        /// Represents a callback used to inform a listener that a ServerConnection has received data.
-        /// </summary>
-        /// <param name="sender">The sender of the callback.</param>
-        /// <param name="e">The DataEventArgs object containging the received data.</param>
-        public delegate void DataReceivedCallback(NetConnection<T> sender, DataEventArgs e);
-        /// <summary>
-        /// Represents a callback used to inform a listener that a ServerConnection has disconnected.
-        /// </summary>
-        /// <param name="sender">The sender of the callback.</param>
-        /// <param name="e">The SocketAsyncEventArgs object used by the ServerConnection.</param>
-        public delegate void DisconnectedCallback(NetConnection<T> sender, SocketAsyncEventArgs e);
-
         #region Internal Classes
         internal class State
         {
-            public DataReceivedCallback dataReceived;
-            public DisconnectedCallback disconnectedCallback;
+            //public DataReceivedCallback dataReceived;
+            //public DisconnectedCallback disconnectedCallback;
             public Socket socket;
         }
         #endregion
@@ -75,8 +63,7 @@ namespace Network
         /// <param name="args">The SocketAsyncEventArgs for asyncronous recieves.</param>
         /// <param name="dataReceived">A callback invoked when data is recieved.</param>
         /// <param name="disconnectedCallback">A callback invoked on disconnection.</param>
-        public NetConnection(Socket socket, SocketAsyncEventArgs args, DataReceivedCallback dataReceived,
-            DisconnectedCallback disconnectedCallback, T session)
+        public NetConnection(Socket socket)
         {
             lock (this)
             {
@@ -84,8 +71,8 @@ namespace Network
                 State state = new State()
                 {
                     socket = socket,
-                    dataReceived = dataReceived,
-                    disconnectedCallback = disconnectedCallback
+                    //dataReceived = dataReceived,
+                    //disconnectedCallback = disconnectedCallback
                 };
                 eventArgs = new SocketAsyncEventArgs();
                 eventArgs.AcceptSocket = socket;
@@ -94,7 +81,7 @@ namespace Network
                 eventArgs.SetBuffer(new byte[64 * 1024],0, 64 * 1024);
 
                 BeginReceive(eventArgs);
-                this.session = session;
+                this.session = new T();
             }
         }
         #endregion
@@ -117,15 +104,16 @@ namespace Network
         /// <param name="data">The data to send.</param>
         /// <param name="offset">The offset into the data.</param>
         /// <param name="count">The ammount of data to send.</param>
-        public void SendData(Byte[] data, Int32 offset, Int32 count)
+        public void SendData(SkillBridge.Message.NetMessage message)
         {
+            byte[] data = PackageHandler.PackMessage(message);
             lock (this)
             {
                 State state = eventArgs.UserToken as State;
                 Socket socket = state.socket;
                 if (socket.Connected)
                     //socket.Send(data, offset, count, SocketFlags.None);
-                    socket.BeginSend(data, 0, count, SocketFlags.None, new AsyncCallback(SendCallback), socket);
+                    socket.BeginSend(data, 0, data.Length, SocketFlags.None, new AsyncCallback(SendCallback), socket);
             }
         }
 
@@ -191,8 +179,7 @@ namespace Network
 
             Byte[] data = new Byte[args.BytesTransferred];
             Array.Copy(args.Buffer, args.Offset, data, 0, data.Length);
-            OnDataReceived(data, args.RemoteEndPoint as IPEndPoint, state.dataReceived);
-
+            DataReceived(this, new DataEventArgs() { RemoteEndPoint = args.RemoteEndPoint as IPEndPoint, Data = data, Offset = 0, Length = data.Length });
             BeginReceive(args);
         }
 
@@ -213,31 +200,41 @@ namespace Network
             socket = null;
 
             args.Completed -= ReceivedCompleted; //MUST Remember This!
-            OnDisconnected(args, state.disconnectedCallback);
+            Disconnected(this, args);
+        }
+        /// <summary>
+        /// 连接断开回调
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        static void Disconnected(NetConnection<T> sender, SocketAsyncEventArgs e)
+        {
+            //Performance.ServerConnect = Interlocked.Decrement(ref Performance.ServerConnect);
+            Log.WarningFormat("Client[{0}] Disconnected", e.RemoteEndPoint);
+        }
+
+
+        /// <summary>
+        /// 接受数据回调
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        static void DataReceived(NetConnection<T> sender, DataEventArgs e)
+        {
+            Log.WarningFormat("Client[{0}] DataReceived Len:{1}", e.RemoteEndPoint, e.Length);
+
+            //由包处理器处理封包
+            lock (sender.packageHandler)
+            {
+                sender.packageHandler.ReceiveData(e.Data, 0, e.Data.Length);
+            }
+            //PacketsPerSec = Interlocked.Increment(ref PacketsPerSec);
+            //RecvBytesPerSec = Interlocked.Add(ref RecvBytesPerSec, e.Data.Length);
         }
         #endregion
 
         #region Events
-        /// <summary>
-        /// Fires the DataReceivedCallback.
-        /// </summary>
-        /// <param name="data">The data which was received.</param>
-        /// <param name="remoteEndPoint">The address the data came from.</param>
-        /// <param name="callback">The callback.</param>
-        private void OnDataReceived(Byte[] data, IPEndPoint remoteEndPoint, DataReceivedCallback callback)
-        {
-            callback(this, new DataEventArgs() { RemoteEndPoint = remoteEndPoint, Data = data, Offset =0, Length = data.Length  });
-        }
-
-        /// <summary>
-        /// Fires the DisconnectedCallback.
-        /// </summary>
-        /// <param name="args">The SocketAsyncEventArgs for this connection.</param>
-        /// <param name="callback">The callback.</param>
-        private void OnDisconnected(SocketAsyncEventArgs args, DisconnectedCallback callback)
-        {
-            callback(this, args);
-        }
+       
         #endregion
 
         #region public Property

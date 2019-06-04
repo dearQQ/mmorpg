@@ -23,7 +23,6 @@ namespace GameServer
         public bool Init()
         {
             DBService.Instance.Init();
-
             DataManager.Instance.Load();
             UserService.Instance.Init();
             MapService.Instance.Init();
