@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-
+using Managers;
 namespace Services
 {
     class MapService : Singleton<MapService>, IDisposable
@@ -21,12 +21,15 @@ namespace Services
         public MapService()
         {
             MessageDistributer.Instance.Subscribe<MapCharacterEnterResponse>(this.OnMapCharacterEnter);
+            MessageDistributer.Instance.Subscribe<MapCharacterLeaveResponse>(this.OnMapCharacterLeave);
+            MessageDistributer.Instance.Subscribe<MapEntitySyncResponse>(this.MapEntitySyncResponse);
         }
 
         public void Dispose()
         {
             MessageDistributer.Instance.Unsubscribe<MapCharacterEnterResponse>(this.OnMapCharacterEnter);
-            
+            MessageDistributer.Instance.Unsubscribe<MapCharacterLeaveResponse>(this.OnMapCharacterLeave);
+            MessageDistributer.Instance.Unsubscribe<MapEntitySyncResponse>(this.MapEntitySyncResponse);
         }
         public void Init()
         {
@@ -44,13 +47,14 @@ namespace Services
 
         private void OnMapCharacterEnter(object sender, MapCharacterEnterResponse response)
         {
+            Debug.LogFormat("OnMapCharacterEnter:Map:{0} Count:{1}", response.mapId, response.Characters.Count);
             foreach (var character in response.Characters)
             {
                 if (Models.User.Instance.CurrentCharacter.Id == character.Id)
                     Models.User.Instance.CurrentCharacter = character;
-                if (CharacterManager.Instance.Characters.ContainsKey(character.Id))
+                if (CharacterManager.Instance.Characters.ContainsKey(character.Entity.Id))
                 {
-                    CharacterManager.Instance.RemoveCharacter(character.Id);
+                    CharacterManager.Instance.RemoveCharacter(character.Entity.Id);
                 }
                 CharacterManager.Instance.AddCharacter(character);
             }
@@ -66,10 +70,41 @@ namespace Services
             if (DataManager.Instance.Maps.ContainsKey(mapId))
             {
                 MapDefine map = DataManager.Instance.Maps[mapId];
-                SceneManager.Instance.LoadScene(map.Resource);
+                //Models.User.Instance.CurrentMapData = map;
+                GameManager.SceneMgr.LoadScene(map.Resource);
             }
             else
                 Debug.LogError("该地图不存在:"+ mapId);
+        }
+
+        private void OnMapCharacterLeave(object sender, MapCharacterLeaveResponse response)
+        {
+            Debug.LogFormat("OnMapCharacterLeave id:{0}", response.characterId);
+            if (response.characterId == Models.User.Instance.CurrentCharacter.Entity.Id)
+                CharacterManager.Instance.Clear();
+            else
+                CharacterManager.Instance.RemoveCharacter(response.characterId);
+            this.curMapId = 0;
+        }
+
+        public void MapEntitySyncRequst(EntityEvent entityEvent,NEntity nEntity)
+        {
+            NetMessage message = new NetMessage();
+            message.Request = new NetMessageRequest();
+            message.Request.mapEntitySync = new MapEntitySyncRequest();
+            message.Request.mapEntitySync.entitySync = new NEntitySync();
+            message.Request.mapEntitySync.entitySync.Id = nEntity.Id;
+            message.Request.mapEntitySync.entitySync.Event = entityEvent;
+            message.Request.mapEntitySync.entitySync.Entity = nEntity;
+            NetClient.Instance.SendMessage(message);
+        }
+
+        public void MapEntitySyncResponse(object sender,MapEntitySyncResponse response)
+        {
+            foreach (var entity in response.entitySyncs)
+            {
+                EntityManager.Instance.OnEntitySync(entity);
+            }
         }
     }
 }

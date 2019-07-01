@@ -68,7 +68,7 @@ public class UICreateCharacter : MonoBehaviour
             if (job.isOn)
                 jobID = jobs.IndexOf(job) + 1;
         }
-        UserService.Instance.CreateCharacter(name.text, jobID);
+        UserService.Instance.OnCreateCharacterRequest(name.text, jobID);
     }
     void OnCreateCharacter(SkillBridge.Message.Result result,string msg)
     {

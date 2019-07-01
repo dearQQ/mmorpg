@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Services;
-public class UIMiniMap : MonoSingleton<UIMiniMap> {
+public class UIMiniMap : MonoBehaviour {
     private Collider mapBox;
     [SerializeField]
     private Image imgMap;
@@ -15,8 +15,8 @@ public class UIMiniMap : MonoSingleton<UIMiniMap> {
     // Use this for initialization
     void Start ()
     {
-        DontDestroyOnLoad(this);
-	}
+        Init();
+    }
     public void Init()
     {
         mapBox = GameObject.Find("mapBox").GetComponent<Collider>();
@@ -27,7 +27,8 @@ public class UIMiniMap : MonoSingleton<UIMiniMap> {
 	// Update is called once per frame
 	void Update ()
     {
-        player.transform.eulerAngles = new Vector3(0, 0, User.Instance.CurrentCharacterObject.transform.eulerAngles.y);
+        if (User.Instance.CurrentCharacterObject == null)
+            return;
         float realWidth = mapBox.bounds.size.x;
         float realHeight = mapBox.bounds.size.z;
         float offset_x = User.Instance.CurrentCharacterObject.transform.position.x - mapBox.bounds.min.x;

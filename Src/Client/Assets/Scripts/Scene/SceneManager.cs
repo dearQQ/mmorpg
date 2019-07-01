@@ -3,15 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class SceneManager : MonoSingleton<SceneManager>
+public class SceneManager : MonoBehaviour
 {
     UnityAction<float> onProgress = null;
 
-    // Use this for initialization
-    protected override void OnStart()
-    {
-        DontDestroyOnLoad(this);
-    }
 
     // Update is called once per frame
     void Update () {

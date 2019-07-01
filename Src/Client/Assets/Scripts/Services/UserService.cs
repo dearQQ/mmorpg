@@ -23,6 +23,7 @@ namespace Services
             MessageDistributer.Instance.Subscribe<UserLoginResponse>(this.OnLoginResponse);
             MessageDistributer.Instance.Subscribe<UserCreateCharacterResponse>(this.OnCreateCharacterResponse);
             MessageDistributer.Instance.Subscribe<UserGameEnterResponse>(this.OnGameEnterResponse);
+            MessageDistributer.Instance.Subscribe<UserGameLeaveResponse>(this.OnGameLeave);
         }
 
         public void Dispose()
@@ -31,6 +32,7 @@ namespace Services
             MessageDistributer.Instance.Unsubscribe<UserLoginResponse>(this.OnLoginResponse);
             MessageDistributer.Instance.Unsubscribe<UserCreateCharacterResponse>(this.OnCreateCharacterResponse);
             MessageDistributer.Instance.Unsubscribe<UserGameEnterResponse>(this.OnGameEnterResponse);
+            MessageDistributer.Instance.Unsubscribe<UserGameLeaveResponse>(this.OnGameLeave);
         }
 
         public void Connect()
@@ -46,7 +48,7 @@ namespace Services
             }
         }
         
-        public void Register(string user,string psw)
+        public void OnRegisterRequest(string user,string psw)
         {
             NetMessage netMessage = new NetMessage();
             netMessage.Request = new NetMessageRequest();
@@ -63,7 +65,9 @@ namespace Services
                 this.OnRegister(response.Result, response.Errormsg);
             }
         }
-        public void Login(string user, string psw)
+
+
+        public void OnLoginRequest(string user, string psw)
         {
             NetMessage netMessage = new NetMessage();
             netMessage.Request = new NetMessageRequest();
@@ -88,7 +92,7 @@ namespace Services
         /// </summary>
         /// <param name="name"></param>
         /// <param name="type">角色职业</param>
-        public void CreateCharacter(string name,int job)
+        public void OnCreateCharacterRequest(string name,int job)
         {
             NetMessage netMessage = new NetMessage();
             netMessage.Request = new NetMessageRequest();
@@ -108,17 +112,31 @@ namespace Services
                 this.OnCreateCharacter(response.Result,response.Errormsg);
         }
 
-        public void GameEnter(int type)
+        public void OnGameEnterRequest(int index)
         {
             NetMessage netMessage = new NetMessage();
             netMessage.Request = new NetMessageRequest();
             netMessage.Request.gameEnter = new UserGameEnterRequest();
-            netMessage.Request.gameEnter.characterIdx = type;
+            netMessage.Request.gameEnter.characterIdx = index;
             NetClient.Instance.SendMessage(netMessage);
         }
         void OnGameEnterResponse(object sender,UserGameEnterResponse response)
         {
             
+        }
+        public void SendGameLeave()
+        {
+            Debug.Log("UserGameLeaveRequest");
+            NetMessage message = new NetMessage();
+            message.Request = new NetMessageRequest();
+            message.Request.gameLeave = new UserGameLeaveRequest();
+            
+            NetClient.Instance.SendMessage(message);
+        }
+
+        void OnGameLeave(object sender, UserGameLeaveResponse response)
+        {
+            Debug.LogFormat("OnGameLeave:{0} [{1}]", response.Result, response.Errormsg);
         }
     }
 }

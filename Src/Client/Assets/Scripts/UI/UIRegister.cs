@@ -62,7 +62,7 @@ public class UIRegister : MonoBehaviour
             MessageBox.Show("两次输入的密码不一致", "用户注册");
             return;
         }
-        UserService.Instance.Register(txtUser.text, txtPassword.text);
+        UserService.Instance.OnRegisterRequest(txtUser.text, txtPassword.text);
 
     }
     void OnRegister(Result result, string message)

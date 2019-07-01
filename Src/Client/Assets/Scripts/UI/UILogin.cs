@@ -44,7 +44,7 @@ public class UILogin : MonoBehaviour
         }
         
         PlayerPrefs.SetInt("isRemember",isRemember.isOn ? 1 : 0);
-        UserService.Instance.Login(txtUser.text,txtPassword.text);
+        UserService.Instance.OnLoginRequest(txtUser.text,txtPassword.text);
     }
 
     void OnLogin(Result res,string msg)
@@ -56,7 +56,7 @@ public class UILogin : MonoBehaviour
                 PlayerPrefs.SetString("user", txtUser.text);
                 PlayerPrefs.SetString("password", txtPassword.text);
             }
-            SceneManager.Instance.LoadScene("CharSelect");
+            GameManager.SceneMgr.LoadScene("CharSelect");
         }
         else
             MessageBox.Show(msg, "用户登录", MessageBoxType.Error);

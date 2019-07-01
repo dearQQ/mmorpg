@@ -89,7 +89,7 @@ public class UICharacterSelect : MonoBehaviour {
     //进入游戏
     public void EnterGame()
     {
-        UserService.Instance.GameEnter(curIndex);
+        UserService.Instance.OnGameEnterRequest(curIndex);
         Models.User.Instance.CurrentCharacter = Models.User.Instance.Info.Player.Characters[curIndex];
     }
     

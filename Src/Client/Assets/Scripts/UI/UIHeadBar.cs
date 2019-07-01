@@ -5,31 +5,30 @@ using UnityEngine.UI;
 using Entities;
 public class UIHeadBar : MonoBehaviour {
     [SerializeField]
-    private Text name;
+    private Text _name;
     [SerializeField]
-    private Text lv;
+    private Text _lv;
     [SerializeField]
-    private Image hp;
+    private Image _hp;
     public Character cha;
-    private GameObject camera;
+    private GameObject _camera;
     public Transform owner;
 	// Use this for initialization
 	void Start ()
     {
-        camera = GameObject.FindGameObjectWithTag("MainCityCamera");
-
+        _camera = GameManager.CameraMgr.MainCamera;
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (cha != null)
+        if (cha != null && owner != null && _camera != null)
         {
-            name.text = "Lv." + cha.Info.Level + " " + cha.Name;
-            lv.text = "Lv." + cha.Info.Level;
-            hp.fillAmount = 1f;
+            _name.text = "Lv." + cha.Info.Level + " " + cha.Name;
+            _lv.text = "Lv." + cha.Info.Level;
+            _hp.fillAmount = 1f;
             this.transform.position = owner.position + Vector3.up * 2;
-            this.transform.forward = camera.transform.forward;
+            this.transform.forward = _camera.transform.forward;
         }
 	}
 }

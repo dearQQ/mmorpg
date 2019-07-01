@@ -4,6 +4,7 @@ using UnityEngine;
 
 using Entities;
 using SkillBridge.Message;
+using Services;
 
 public class PlayerInputController : MonoBehaviour {
 
@@ -40,7 +41,8 @@ public class PlayerInputController : MonoBehaviour {
             cinfo.Entity.Direction.Z = 0;
             this.character = new Character(cinfo);
 
-            if (entityController != null) entityController.entity = this.character;
+            if (entityController != null)
+                entityController.entity = this.character;
         }
     }
 
@@ -50,7 +52,7 @@ public class PlayerInputController : MonoBehaviour {
         if (character == null)
             return;
 
-        
+
         float v = Input.GetAxis("Vertical");
         if (v > 0.01)
         {
@@ -89,7 +91,7 @@ public class PlayerInputController : MonoBehaviour {
         }
 
         float h = Input.GetAxis("Horizontal");
-        if (h<-0.1 || h>0.1)
+        if (h < -0.1 || h > 0.1)
         {
             this.transform.Rotate(0, h * rotateSpeed, 0);
             Vector3 dir = GameObjectTool.LogicToWorld(character.direction);
@@ -127,5 +129,6 @@ public class PlayerInputController : MonoBehaviour {
     {
         if (entityController != null)
             entityController.OnEntityEvent(entityEvent);
+        MapService.Instance.MapEntitySyncRequst(entityEvent, character.EntityData);
     }
 }

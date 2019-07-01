@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Entities;
+using Managers;
 
-
-public class EntityController : MonoBehaviour
+public class EntityController : MonoBehaviour,IEntityNotify
 {
 
     public Animator anim;
@@ -76,6 +76,7 @@ public class EntityController : MonoBehaviour
         {
             case EntityEvent.Idle:
                 anim.SetBool("MoveForward", false);
+                anim.SetBool("MoveBack", false);
                 anim.SetTrigger("Idle");
                 break;
             case EntityEvent.MoveFwd:
@@ -88,6 +89,16 @@ public class EntityController : MonoBehaviour
                 anim.SetTrigger("Jump");
                 break;
         }
+    }
+
+    public void OnEntityRemoved()
+    {
+
+    }
+
+    public void OnEntityChanged(Entity entity)
+    {
+
     }
 }
 
