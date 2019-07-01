@@ -2,10 +2,8 @@
 using SkillBridge.Message;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace GameServer.Entities
 {
     class Entity
@@ -15,9 +13,7 @@ namespace GameServer.Entities
             get { return this.entityData.Id; }
         }
 
-
         private Vector3Int position;
-
         public Vector3Int Position
         {
             get { return position; }
@@ -65,6 +61,7 @@ namespace GameServer.Entities
 
         public Entity(Vector3Int pos,Vector3Int dir)
         {
+            Console.WriteLine("=================pos = {0} dir = {1}", pos.ToString(), dir.ToString());
             this.entityData = new NEntity();
             this.entityData.Position = pos;
             this.entityData.Direction = dir;

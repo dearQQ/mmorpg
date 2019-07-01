@@ -11,6 +11,7 @@ using Common.Data;
 using Network;
 using GameServer.Managers;
 using GameServer.Entities;
+using GameServer.Services;
 
 namespace GameServer.Models
 {
@@ -52,21 +53,69 @@ namespace GameServer.Models
         /// <param name="character"></param>
         internal void CharacterEnter(NetConnection<NetSession> conn, Character character)
         {
-            Log.InfoFormat("CharacterEnter: Map:{0} characterId:{1}", this.Define.ID, character.Id);
+            Log.InfoFormat("CharacterEnter: Map:{0} characterId:{1}", this.Define.ID, character.entityId);
             character.Info.mapId = this.ID;
+            //通知自己这个地图有多少玩家
+            NetMessage message = new NetMessage();
+            message.Response = new NetMessageResponse();
+            message.Response.mapCharacterEnter = new MapCharacterEnterResponse();
+            message.Response.mapCharacterEnter.mapId = this.ID;
+			message.Response.mapCharacterEnter.Characters.Add(character.Info);
 
-            this.MapCharacters[character.Id] = new MapCharacter(conn, character);
+            //通知所有玩家我进入地图了
+            NetMessage bordcast = new NetMessage();
+            bordcast.Response = new NetMessageResponse();
+            bordcast.Response.mapCharacterEnter = new MapCharacterEnterResponse();
+            bordcast.Response.mapCharacterEnter.mapId = this.ID;
+			
+            foreach (var kv in this.MapCharacters)
+            {
+                //添加这个地图的所以角色信息
+                message.Response.mapCharacterEnter.Characters.Add(kv.Value.character.Info);
 
+                //通知每个玩家我进入地图了
+                bordcast.Response.mapCharacterEnter.Characters.Clear();
+                bordcast.Response.mapCharacterEnter.Characters.Add(character.Info);
+                //给其他玩家发消息
+                kv.Value.connection.SendData(bordcast);
+            }
+            this.MapCharacters[character.entityId] = new MapCharacter(conn, character);
+            //给自己发消息
+            conn.SendData(message);
+        }
+
+        internal void CharacterLeave(NetConnection<NetSession> conn, Character character)
+        {
+            Log.InfoFormat("CharacterLeave: Map:{0} characterId:{1}", this.Define.ID, character.entityId);
             NetMessage message = new NetMessage();
             message.Response = new NetMessageResponse();
 
             foreach (var kv in this.MapCharacters)
             {
-                message.Response.mapCharacterEnter = new MapCharacterEnterResponse();
-                message.Response.mapCharacterEnter.mapId = this.Define.ID;
-                message.Response.mapCharacterEnter.Characters.Add(kv.Value.character.Info);
-                
-                conn.SendData(message);
+                message.Response.mapCharacterLeave = new MapCharacterLeaveResponse();
+                message.Response.mapCharacterLeave.characterId = character.entityId;
+                kv.Value.connection.SendData(message);
+            }
+            this.MapCharacters.Remove(character.entityId);
+        }
+
+        internal void UpdateEntity(NEntitySync nEntity)
+        {
+            foreach (var item in this.MapCharacters)
+            {
+                if (item.Value.character.entityId == nEntity.Id)
+                {
+                    item.Value.character.Position = nEntity.Entity.Position;
+                    item.Value.character.Direction = nEntity.Entity.Direction;
+                    item.Value.character.Speed = nEntity.Entity.Speed;
+                    TCharacter tcha = DBService.Instance.Entities.Characters.Where(u => u.Name == item.Value.character.Info.Name).FirstOrDefault();
+                    tcha.MapPosX = nEntity.Entity.Position.X;
+                    tcha.MapPosY = nEntity.Entity.Position.Y;
+                    tcha.MapPosZ = nEntity.Entity.Position.Z;
+                    DBService.Instance.Entities.SaveChanges();
+                }
+                else
+                    MapService.Instance.SendEntityUpdate(item.Value.connection,nEntity);
             }
         }
     }

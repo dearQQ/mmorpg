@@ -19,7 +19,6 @@ namespace GameServer
         {
             this.MapID = 1;
         }
-    
         public int ID { get; set; }
         public int TID { get; set; }
         public string Name { get; set; }

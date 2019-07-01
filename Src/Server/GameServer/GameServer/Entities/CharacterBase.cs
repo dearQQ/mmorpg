@@ -11,7 +11,6 @@ namespace GameServer.Entities
 {
     class CharacterBase : Entity
     {
-
         public int Id
         {
             get
