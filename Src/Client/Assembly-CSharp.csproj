@@ -81,6 +81,8 @@
     <Compile Include="Assets\Scripts\Scene\SceneManager.cs" />
     <Compile Include="Assets\Scripts\Services\MapService.cs" />
     <Compile Include="Assets\Scripts\Services\UserService.cs" />
+    <Compile Include="Assets\Scripts\TeleporterIn.cs" />
+    <Compile Include="Assets\Scripts\TeleporterOut.cs" />
     <Compile Include="Assets\Scripts\UI\MessageBox.cs" />
     <Compile Include="Assets\Scripts\UI\PlayModelAnima.cs" />
     <Compile Include="Assets\Scripts\UI\UIBase.cs" />

@@ -103,7 +103,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4591018277781720}
-  - component: {fileID: 65018752143885844}
   m_Layer: 0
   m_Name: EFX_Portal_prefab
   m_TagString: Untagged
@@ -170,6 +169,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4604257822629888}
+  - component: {fileID: 65650147582941076}
+  - component: {fileID: 114992097457624814}
   m_Layer: 10
   m_Name: Teleporters
   m_TagString: Untagged
@@ -238,7 +239,7 @@ GameObject:
   - component: {fileID: 4432530911981518}
   - component: {fileID: 33341192757022030}
   - component: {fileID: 23190741695436910}
-  - component: {fileID: 65846023481899326}
+  - component: {fileID: 114415680101508768}
   m_Layer: 10
   m_Name: TeleportersPoint
   m_TagString: Untagged
@@ -353,13 +354,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1943035653113292}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.641, y: -1.409, z: 0}
-  m_LocalScale: {x: 1, y: 0.16, z: 1.81}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 4.3, y: -1.04, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4604257822629888}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4458443691569624
 Transform:
   m_ObjectHideFlags: 1
@@ -393,7 +394,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1345757701249902}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.34, y: -1.54, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4090927055653978}
@@ -407,14 +408,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1780696787886808}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.14, y: 1.427, z: 40.07}
+  m_LocalPosition: {x: 23.31, y: 1.62, z: 40.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4432530911981518}
   - {fileID: 4591018277781720}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4643772779154384
 Transform:
   m_ObjectHideFlags: 1
@@ -483,30 +484,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1943035653113292}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65018752143885844
+--- !u!65 &65650147582941076
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1345757701249902}
+  m_GameObject: {fileID: 1780696787886808}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.72, y: 3.78, z: 6.88}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65846023481899326
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1943035653113292}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 5.1411076, y: 3.78, z: 6.88}
+  m_Center: {x: -0.5081911, y: 0, z: 0}
 --- !u!95 &95708135087523062
 Animator:
   serializedVersion: 3
@@ -525,6 +514,30 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114415680101508768
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1943035653113292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0d95e52b40975b4f8e4f2911512b667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 4
+--- !u!114 &114992097457624814
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1780696787886808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 776473237de75f54c90bdbbc8b65121c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 4
 --- !u!198 &198019780091478626
 ParticleSystem:
   m_ObjectHideFlags: 1

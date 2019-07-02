@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour {
         public Dictionary<string, GameObject> Groups = new Dictionary<string, GameObject>();
         private List<string> _groupName = new List<string>
         {
-            "MainUI",
+            "Main",
             "Box",
             "HpBar",
         };
@@ -36,6 +36,7 @@ public class UIManager : MonoBehaviour {
 
         public GameObject instance;
 
+        public bool isGlobal;
         //隐藏的时间
         public DateTime hideTime;
     }
@@ -49,6 +50,8 @@ public class UIManager : MonoBehaviour {
     {
         //注册UI
         //_uiElements.Add(UITest, new UIElement() { path = "UITest"});
+        _uiElements.Add(typeof(UIMiniMap), new UIElement() { path = "UI/UIMiniMap", isGlobal = true });
+        _uiElements.Add(typeof(UIMainCity), new UIElement() { path = "UI/UIMainCity", isGlobal = true });
     }
 
     private void Start()
@@ -79,10 +82,12 @@ public class UIManager : MonoBehaviour {
                     Debug.LogError("打开的UI路径不存在:" + uiInfo.path);
                     return default(T);
                 }
-                uiInfo.instance = obj as GameObject;
+                uiInfo.instance = GameObject.Instantiate(obj as GameObject);
             }
             uiInfo.instance.transform.SetParent(_uiGroup.Groups[group].transform);
             uiInfo.instance.transform.SetAsLastSibling();
+            uiInfo.instance.transform.localPosition = Vector3.zero;
+            uiInfo.instance.transform.localScale = Vector3.one;
             return uiInfo.instance.GetComponent<T>();
         }
         Debug.LogError("打开的UI未注册,Type = " + type);

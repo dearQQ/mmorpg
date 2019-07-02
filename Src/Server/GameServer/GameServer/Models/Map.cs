@@ -79,12 +79,15 @@ namespace GameServer.Models
                 //给其他玩家发消息
                 kv.Value.connection.SendData(bordcast);
             }
+            TCharacter tcha = DBService.Instance.Entities.Characters.Where(u => u.Name == character.Info.Name).FirstOrDefault();
+            tcha.MapID = character.Info.mapId;
+            DBService.Instance.Entities.SaveChanges();
             this.MapCharacters[character.entityId] = new MapCharacter(conn, character);
             //给自己发消息
             conn.SendData(message);
         }
 
-        internal void CharacterLeave(NetConnection<NetSession> conn, Character character)
+        internal void CharacterLeave(Character character)
         {
             Log.InfoFormat("CharacterLeave: Map:{0} characterId:{1}", this.Define.ID, character.entityId);
             NetMessage message = new NetMessage();

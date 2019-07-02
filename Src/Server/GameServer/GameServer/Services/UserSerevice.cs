@@ -167,7 +167,14 @@ namespace GameServer.Services
             message.Response.gameLeave.Errormsg = "none";
             sender.SendData(message);
 
-            MapManager.Instance[character.Data.MapID].CharacterLeave(sender, character);
+            MapManager.Instance[character.Data.MapID].CharacterLeave(character);
+        }
+
+        public void CharacterLeave(Character character)
+        {
+            Log.InfoFormat("CharacterLeave： characterID:{0}:{1}", character.Id, character.Info.Name);
+            CharacterManager.Instance.RemoveCharacter(character.Id);
+            MapManager.Instance[character.Data.MapID].CharacterLeave(character);
         }
     }
 }

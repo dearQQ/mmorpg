@@ -9,26 +9,26 @@
   },
   "2": {
     "ID": 2,
-    "Name": "野外1",
+    "Name": "布鲁镇",
     "Type": "Normal",
     "SubType": "Normal",
     "PKMode": false,
-    "Resource": "Map01"
+    "Resource": "buluzheng"
   },
   "3": {
     "ID": 3,
-    "Name": "野外2",
+    "Name": "落日森林",
     "Type": "Normal",
     "SubType": "Normal",
     "PKMode": false,
-    "Resource": "Map02"
+    "Resource": "luorisenl"
   },
   "4": {
     "ID": 4,
-    "Name": "副本1",
+    "Name": "落日余晖",
     "Type": "Normal",
     "SubType": "Normal",
     "PKMode": false,
-    "Resource": "Map03"
+    "Resource": "luoriyuhui"
   }
 }

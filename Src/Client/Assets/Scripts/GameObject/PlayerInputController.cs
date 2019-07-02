@@ -125,7 +125,7 @@ public class PlayerInputController : MonoBehaviour {
         this.transform.position = this.rb.transform.position;
     }
 
-    void SendEntityEvent(EntityEvent entityEvent)
+    public void SendEntityEvent(EntityEvent entityEvent)
     {
         if (entityController != null)
             entityController.OnEntityEvent(entityEvent);

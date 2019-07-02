@@ -49,11 +49,6 @@ E:\MyMMO\Server\GameServer\bin\Debug\zh-Hans\EntityFramework.resources.dll
 E:\MyMMO\Server\GameServer\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
 E:\MyMMO\Server\GameServer\obj\Debug\GameServer.exe.config
 E:\MyMMO\Server\GameServer\obj\Debug\GameServer.csproj.CopyComplete
-E:\MyMMO\Src\Server\GameServer\GameServer\obj\Debug\GameServer.csprojAssemblyReference.cache
-E:\MyMMO\Src\Server\GameServer\GameServer\obj\Debug\GameServer.exe.config
-E:\MyMMO\Src\Server\GameServer\GameServer\obj\Debug\GameServer.csproj.CoreCompileInputs.cache
-E:\MyMMO\Src\Server\GameServer\GameServer\obj\Debug\GameServer.exe
-E:\MyMMO\Src\Server\GameServer\GameServer\obj\Debug\GameServer.pdb
 E:\MyMMO\Src\Server\GameServer\GameServer\bin\Debug\log4net.xml
 E:\MyMMO\Src\Server\GameServer\GameServer\bin\Debug\GameServer.exe.config
 E:\MyMMO\Src\Server\GameServer\GameServer\bin\Debug\GameServer.exe
@@ -74,4 +69,9 @@ E:\MyMMO\Src\Server\GameServer\GameServer\bin\Debug\Newtonsoft.Json.xml
 E:\MyMMO\Src\Server\GameServer\GameServer\bin\Debug\protobuf-net.xml
 E:\MyMMO\Src\Server\GameServer\GameServer\bin\Debug\zh-Hans\EntityFramework.resources.dll
 E:\MyMMO\Src\Server\GameServer\GameServer\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+E:\MyMMO\Src\Server\GameServer\GameServer\obj\Debug\GameServer.csprojAssemblyReference.cache
+E:\MyMMO\Src\Server\GameServer\GameServer\obj\Debug\GameServer.exe.config
+E:\MyMMO\Src\Server\GameServer\GameServer\obj\Debug\GameServer.csproj.CoreCompileInputs.cache
 E:\MyMMO\Src\Server\GameServer\GameServer\obj\Debug\GameServer.csproj.CopyComplete
+E:\MyMMO\Src\Server\GameServer\GameServer\obj\Debug\GameServer.exe
+E:\MyMMO\Src\Server\GameServer\GameServer\obj\Debug\GameServer.pdb

@@ -5,7 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Services;
 public class UIMiniMap : MonoBehaviour {
-    private Collider mapBox;
+    int mapID;
+    private GameObject mapBox;
+    BoxCollider box;
     [SerializeField]
     private Image imgMap;
     [SerializeField]
@@ -15,24 +17,45 @@ public class UIMiniMap : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        Init();
+        DontDestroyOnLoad(this);
     }
     public void Init()
     {
-        mapBox = GameObject.Find("mapBox").GetComponent<Collider>();
-        if (mapBox == null)
-            Debug.LogError("该地图没有地图包围盒");
-        txtMapName.text = DataManager.Instance.Maps[MapService.Instance.CurMapID].Name;
+        Common.Data.MapDefine mapDefine = DataManager.Instance.Maps[MapService.Instance.CurMapID];
+        txtMapName.text = mapDefine.Name;
+        mapID = MapService.Instance.CurMapID;
+
+        if (string.IsNullOrEmpty(mapDefine.MiniMap))
+        {
+            this.gameObject.SetActive(false);
+            return;
+        }
+        else
+            this.gameObject.SetActive(true);
+
+        imgMap.sprite = Resloader.Load<Sprite>("MiniMap/" + mapDefine.MiniMap);
+
     }
 	// Update is called once per frame
 	void Update ()
     {
         if (User.Instance.CurrentCharacterObject == null)
             return;
-        float realWidth = mapBox.bounds.size.x;
-        float realHeight = mapBox.bounds.size.z;
-        float offset_x = User.Instance.CurrentCharacterObject.transform.position.x - mapBox.bounds.min.x;
-        float offset_z = User.Instance.CurrentCharacterObject.transform.position.z - mapBox.bounds.min.z;
+        if (mapBox == null)
+        {
+            mapBox = GameObject.FindGameObjectWithTag("MapBox");
+            return;
+        }
+        else if (MapService.Instance.CurMapID > 0 && this.mapID != MapService.Instance.CurMapID)
+        {
+            Init();
+        }
+        if (box == null)
+            box = mapBox.GetComponent<BoxCollider>();
+        float realWidth = box.bounds.size.x;
+        float realHeight = box.bounds.size.z;
+        float offset_x = User.Instance.CurrentCharacterObject.transform.position.x - box.bounds.min.x;
+        float offset_z = User.Instance.CurrentCharacterObject.transform.position.z - box.bounds.min.z;
         float pivotX = offset_x / realWidth;
         float pivotY = offset_z / realHeight;
 

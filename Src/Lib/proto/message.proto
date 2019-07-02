@@ -115,8 +115,7 @@ message NetMessageRequest{
 	MapCharacterEnterRequest mapCharacterEnter = 6;
 
 	MapEntitySyncRequest mapEntitySync = 8;
-	MapTeleportRequest mapTeleport = 9;
-	FirstTestRequest firstTestReq  =10;
+	MapTeleportRequest mapTeleportReq = 9;
 }
 
 message NetMessageResponse{
@@ -125,13 +124,10 @@ message NetMessageResponse{
 	UserCreateCharacterResponse createChar = 3;
 	UserGameEnterResponse gameEnter = 4;
 	UserGameLeaveResponse gameLeave = 5;
-
 	MapCharacterEnterResponse mapCharacterEnter = 6;
 	MapCharacterLeaveResponse mapCharacterLeave = 7;
-
 	MapEntitySyncResponse mapEntitySync = 8;
-	FirstTestResponse firstTestRes = 9;
-	
+	MapTeleportResponse mapTeleportRes = 9;
 }
 
 
@@ -219,15 +215,12 @@ message MapEntitySyncResponse
     repeated NEntitySync entitySyncs = 2;
 }
 
+//地图传送请求
 message MapTeleportRequest
 {
 	int32 teleporterId = 1;
 }
-message FirstTestRequest
+message MapTeleportResponse
 {
-	string text = 1;
-}
-message FirstTestResponse
-{
-	string text = 1;
+	int32 teleporterId = 1;
 }

@@ -23,7 +23,10 @@ namespace Services
             MessageDistributer.Instance.Subscribe<MapCharacterEnterResponse>(this.OnMapCharacterEnter);
             MessageDistributer.Instance.Subscribe<MapCharacterLeaveResponse>(this.OnMapCharacterLeave);
             MessageDistributer.Instance.Subscribe<MapEntitySyncResponse>(this.MapEntitySyncResponse);
+            MessageDistributer.Instance.Subscribe<MapTeleportResponse>(this.MapTeleportResponse);
         }
+
+       
 
         public void Dispose()
         {
@@ -31,6 +34,9 @@ namespace Services
             MessageDistributer.Instance.Unsubscribe<MapCharacterLeaveResponse>(this.OnMapCharacterLeave);
             MessageDistributer.Instance.Unsubscribe<MapEntitySyncResponse>(this.MapEntitySyncResponse);
         }
+
+        
+
         public void Init()
         {
 
@@ -72,6 +78,8 @@ namespace Services
                 MapDefine map = DataManager.Instance.Maps[mapId];
                 //Models.User.Instance.CurrentMapData = map;
                 GameManager.SceneMgr.LoadScene(map.Resource);
+                GameManager.UIMgr.OpenUI<UIMainCity>("Main");
+                GameManager.UIMgr.OpenUI<UIMiniMap>("Main");
             }
             else
                 Debug.LogError("该地图不存在:"+ mapId);
@@ -105,6 +113,18 @@ namespace Services
             {
                 EntityManager.Instance.OnEntitySync(entity);
             }
+        }
+        internal void SendTelepoter(int linkTo)
+        {
+            NetMessage message = new NetMessage();
+            message.Request = new NetMessageRequest();
+            message.Request.mapTeleportReq = new MapTeleportRequest();
+            message.Request.mapTeleportReq.teleporterId = linkTo;
+            NetClient.Instance.SendMessage(message);
+        }
+        private void MapTeleportResponse(object sender, MapTeleportResponse message)
+        {
+            Models.User.Instance.TeleportID = message.teleporterId;
         }
     }
 }

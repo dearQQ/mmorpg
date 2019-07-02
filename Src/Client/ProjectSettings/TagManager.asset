@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MainCityCamera
   - Role
+  - MapBox
   layers:
   - Default
   - TransparentFX
