@@ -19,7 +19,9 @@ namespace GameServer
         {
             this.Characters = new HashSet<TCharacter>();
         }
+    
         public int ID { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TCharacter> Characters { get; set; }
     }

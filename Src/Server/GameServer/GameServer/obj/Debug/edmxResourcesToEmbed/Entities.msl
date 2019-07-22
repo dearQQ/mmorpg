@@ -32,6 +32,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="TCharecterItems">
+      <EntityTypeMapping TypeName="IsTypeOf(ExtremeWorldModel.TCharecterItems)">
+        <MappingFragment StoreEntitySet="TCharecterItems">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TCharacterID" ColumnName="TCharacterID" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="ItemCount" ColumnName="ItemCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="UserPlayer" TypeName="ExtremeWorldModel.UserPlayer" StoreEntitySet="Users">
       <EndProperty Name="Player">
         <ScalarProperty Name="ID" ColumnName="Player_ID" />

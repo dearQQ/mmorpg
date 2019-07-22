@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/19/2019 16:55:30
--- Generated from EDMX file: E:\MyMMO\Server\GameServer\Entities.edmx
+-- Date Created: 07/02/2019 20:59:26
+-- Generated from EDMX file: E:\MyMMO\Src\Server\GameServer\GameServer\Entities.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -72,6 +72,15 @@ CREATE TABLE [dbo].[Characters] (
 );
 GO
 
+-- Creating table 'TCharecterItems'
+CREATE TABLE [dbo].[TCharecterItems] (
+    [ID] int IDENTITY(1,1) NOT NULL,
+    [TCharacterID] int  NOT NULL,
+    [ItemID] int  NOT NULL,
+    [ItemCount] int  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -91,6 +100,12 @@ GO
 -- Creating primary key on [ID] in table 'Characters'
 ALTER TABLE [dbo].[Characters]
 ADD CONSTRAINT [PK_Characters]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'TCharecterItems'
+ALTER TABLE [dbo].[TCharecterItems]
+ADD CONSTRAINT [PK_TCharecterItems]
     PRIMARY KEY CLUSTERED ([ID] ASC);
 GO
 
@@ -126,6 +141,21 @@ GO
 CREATE INDEX [IX_FK_PlayerCharacter]
 ON [dbo].[Characters]
     ([Player_ID]);
+GO
+
+-- Creating foreign key on [TCharacterID] in table 'TCharecterItems'
+ALTER TABLE [dbo].[TCharecterItems]
+ADD CONSTRAINT [FK_CharecterItems]
+    FOREIGN KEY ([TCharacterID])
+    REFERENCES [dbo].[Characters]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CharecterItems'
+CREATE INDEX [IX_FK_CharecterItems]
+ON [dbo].[TCharecterItems]
+    ([TCharacterID]);
 GO
 
 -- --------------------------------------------------

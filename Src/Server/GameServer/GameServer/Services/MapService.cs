@@ -20,6 +20,13 @@ namespace GameServer.Services
         public void Init()
         {
             MapManager.Instance.Init();
+            TCharecterItems charecterItems = new TCharecterItems();
+            charecterItems.ID = 1;
+            charecterItems.ItemID = 100;
+            charecterItems.ItemCount = 99;
+            charecterItems.TCharacterID = 1;
+            DBService.Instance.Entities.TCharecterItems.Add(charecterItems);
+            DBService.Instance.Entities.SaveChanges();
         }
         private void MapEntitySync(NetConnection<NetSession> sender, MapEntitySyncRequest request)
         {

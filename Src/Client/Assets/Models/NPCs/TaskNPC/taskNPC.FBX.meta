@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6026e3fcf8982f24d8d031a9b4f704f0
+guid: e3b61dac7c5fce242b8b5ea2f4bb66bc
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -87,7 +87,12 @@ ModelImporter:
     4300000: taskNPC
     9500000: //RootNode
     13700000: taskNPC
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #26'
+    second: {fileID: 2100000, guid: b669e8ac1e4ba54478ee3c77ec7ebc1b, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

@@ -24,3 +24,4 @@ E:\MyMMO\Src\Lib\Protocol\obj\Debug\Protocol.csproj.CoreCompileInputs.cache
 E:\MyMMO\Src\Lib\Protocol\obj\Debug\Protocol.csproj.CopyComplete
 E:\MyMMO\Src\Lib\Protocol\obj\Debug\Protocol.dll
 E:\MyMMO\Src\Lib\Protocol\obj\Debug\Protocol.pdb
+E:\MyMMO\Src\Lib\Protocol\obj\Debug\Protocol.csprojAssemblyReference.cache

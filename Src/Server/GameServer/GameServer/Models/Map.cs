@@ -82,6 +82,9 @@ namespace GameServer.Models
             TCharacter tcha = DBService.Instance.Entities.Characters.Where(u => u.Name == character.Info.Name).FirstOrDefault();
             tcha.MapID = character.Info.mapId;
             DBService.Instance.Entities.SaveChanges();
+
+            CharacterManager.Instance.AddCharacter(tcha);
+
             this.MapCharacters[character.entityId] = new MapCharacter(conn, character);
             //给自己发消息
             conn.SendData(message);

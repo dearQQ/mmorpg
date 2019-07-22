@@ -77,9 +77,13 @@ namespace Services
             {
                 MapDefine map = DataManager.Instance.Maps[mapId];
                 //Models.User.Instance.CurrentMapData = map;
-                GameManager.SceneMgr.LoadScene(map.Resource);
-                GameManager.UIMgr.OpenUI<UIMainCity>("Main");
-                GameManager.UIMgr.OpenUI<UIMiniMap>("Main");
+                GameManager.SceneMgr.LoadScene(map.Resource,
+                    delegate
+                    {
+                        GameManager.UIMgr.OpenUI<UIMainCity>("Main");
+                        GameManager.UIMgr.OpenUI<UIMiniMap>("Main");
+                    });
+                
             }
             else
                 Debug.LogError("该地图不存在:"+ mapId);

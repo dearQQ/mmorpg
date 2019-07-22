@@ -168,12 +168,7 @@ ModelImporter:
     13700000: treasure_huntergirl
     13700002: "\u5BF9\u8C61001"
     2186277476908879412: ImportLogs
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 'Material #25'
-    second: {fileID: 2100000, guid: f183074ae106061459f94eb60bdbc1ea, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0

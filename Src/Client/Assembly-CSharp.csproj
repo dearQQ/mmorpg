@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\GameObject\EntityController.cs" />
     <Compile Include="Assets\Scripts\GameObject\GameObjectManager.cs" />
     <Compile Include="Assets\Scripts\GameObject\GameObjectTool.cs" />
+    <Compile Include="Assets\Scripts\GameObject\NpcController.cs" />
     <Compile Include="Assets\Scripts\GameObject\PlayerInputController.cs" />
     <Compile Include="Assets\Scripts\GameRoot.cs" />
     <Compile Include="Assets\Scripts\Log\UnityLogger.cs" />

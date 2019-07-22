@@ -85,7 +85,8 @@ ModelImporter:
     400076: Dummy001
     400078: Dummy002
     400080: //RootNode
-    7400000: Treasure_poter_Relax
+    7400000: Take 001
+    7400002: Treasure_poter_Relax
     9500000: //RootNode
   externalObjects: {}
   materials:

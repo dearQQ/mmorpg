@@ -7,14 +7,15 @@ public class SceneManager : MonoBehaviour
 {
     UnityAction<float> onProgress = null;
 
-
+    UnityAction _OnComplete;
     // Update is called once per frame
     void Update () {
 		
 	}
 
-    public void LoadScene(string name)
+    public void LoadScene(string name,UnityAction callback = null)
     {
+        _OnComplete = callback;
         StartCoroutine(LoadLevel(name));
     }
 
@@ -37,5 +38,10 @@ public class SceneManager : MonoBehaviour
         if (onProgress != null)
             onProgress(1f);
         Debug.Log("LevelLoadCompleted:" + obj.progress);
+        if (_OnComplete != null)
+        {
+            _OnComplete();
+            _OnComplete = null;
+        }
     }
 }

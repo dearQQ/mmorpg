@@ -107,6 +107,7 @@ public class UIManager : MonoBehaviour {
         }
     }
 
+    //2分钟回收一次，超过2分钟没有使用的界面会被销毁
     private void Update()
     {
         timer += Time.deltaTime;

@@ -17,6 +17,8 @@ public class UIUserInfo : MonoSingleton<UIUserInfo> {
 	
 	// Update is called once per frame
 	void Update () {
+        if (User.Instance.CurrentCharacter == null)
+            return;
         if (User.Instance.CurrentCharacter.Level != playerLv)
         {
             playerLv = User.Instance.CurrentCharacter.Level;
