@@ -10,8 +10,10 @@ public class UIUserInfo : MonoSingleton<UIUserInfo> {
     private Text textLevel;
     [SerializeField]
     private Text textName;
-	// Use this for initialization
-	void Start ()
+    [SerializeField]
+    private Image imgHead;
+    // Use this for initialization
+    void Start ()
     {
 	}
 	
@@ -24,6 +26,7 @@ public class UIUserInfo : MonoSingleton<UIUserInfo> {
             playerLv = User.Instance.CurrentCharacter.Level;
             textLevel.text = playerLv.ToString();
             textName.text = User.Instance.CurrentCharacter.Name;
+            imgHead.sprite = Resloader.Load<Sprite>(User.Instance.curCharacter.Define.HeadIcon);
         }
 	}
 }

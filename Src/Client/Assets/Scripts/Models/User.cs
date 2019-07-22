@@ -9,7 +9,6 @@ namespace Models
     class User : Singleton<User>
     {
         SkillBridge.Message.NUserInfo userInfo;
-
         public Character curCharacter;
         public SkillBridge.Message.NUserInfo Info
         {
