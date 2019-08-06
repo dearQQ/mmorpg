@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Services;
 public class UIMiniMap : MonoBehaviour {
-    int mapID;
+    private int mapID;
     private GameObject mapBox;
     BoxCollider box;
     [SerializeField]
@@ -19,22 +19,22 @@ public class UIMiniMap : MonoBehaviour {
     {
         DontDestroyOnLoad(this);
     }
-    public void Init()
+    public void UpdateMiniMap()
     {
-        Common.Data.MapDefine mapDefine = DataManager.Instance.Maps[MapService.Instance.CurMapID];
-        txtMapName.text = mapDefine.Name;
-        mapID = MapService.Instance.CurMapID;
+        Common.Data.MapDefine mapCfg = DataManager.Instance.Maps[MapService.Instance.CurMapID];
 
-        if (string.IsNullOrEmpty(mapDefine.MiniMap))
+        //根据配置决定小地图是否显示
+        if (string.IsNullOrEmpty(mapCfg.MiniMap))
         {
             this.gameObject.SetActive(false);
             return;
         }
-        else
+        else if (!this.gameObject.activeSelf)
+        {
             this.gameObject.SetActive(true);
-
-        imgMap.sprite = Resloader.Load<Sprite>("MiniMap/" + mapDefine.MiniMap);
-
+        }
+        txtMapName.text = mapCfg.Name;
+        imgMap.sprite = Resloader.Load<Sprite>("MiniMap/" + mapCfg.MiniMap);
     }
 	// Update is called once per frame
 	void Update ()
@@ -46,12 +46,27 @@ public class UIMiniMap : MonoBehaviour {
             mapBox = GameObject.FindGameObjectWithTag("MapBox");
             return;
         }
-        else if (MapService.Instance.CurMapID > 0 && this.mapID != MapService.Instance.CurMapID)
+        
+        if (mapBox == null)
         {
-            Init();
+            Debug.LogError("该场景没有mapbox");
+            return;
         }
         if (box == null)
             box = mapBox.GetComponent<BoxCollider>();
+
+        if (box == null)
+        {
+            Debug.LogErrorFormat("该场景的box没有BoxCollider,地图id:{0}", this.mapID);
+            return;
+        }
+
+        if (MapService.Instance.CurMapID > 0 && this.mapID != MapService.Instance.CurMapID)
+        {
+            this.mapID = MapService.Instance.CurMapID;
+            UpdateMiniMap();
+        }
+
         float realWidth = box.bounds.size.x;
         float realHeight = box.bounds.size.z;
         float offset_x = User.Instance.CurrentCharacterObject.transform.position.x - box.bounds.min.x;
@@ -62,6 +77,5 @@ public class UIMiniMap : MonoBehaviour {
         this.imgMap.rectTransform.pivot = new Vector2(pivotX, pivotY);
         this.imgMap.rectTransform.localPosition = Vector2.zero;
         this.player.transform.eulerAngles = new Vector3(0, 0, -User.Instance.CurrentCharacterObject.transform.eulerAngles.y);
-
     }
 }

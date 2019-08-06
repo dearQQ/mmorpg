@@ -29,16 +29,17 @@
           <ScalarProperty Name="MapPosX" ColumnName="MapPosX" />
           <ScalarProperty Name="MapPosY" ColumnName="MapPosY" />
           <ScalarProperty Name="MapPosZ" ColumnName="MapPosZ" />
+          <ScalarProperty Name="TCharacterItemID" ColumnName="TCharacterItemID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="TCharecterItems">
-      <EntityTypeMapping TypeName="IsTypeOf(ExtremeWorldModel.TCharecterItems)">
-        <MappingFragment StoreEntitySet="TCharecterItems">
+    <EntitySetMapping Name="CharacterItems">
+      <EntityTypeMapping TypeName="IsTypeOf(ExtremeWorldModel.TCharacterItem)">
+        <MappingFragment StoreEntitySet="CharacterItems">
           <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="TCharacterID" ColumnName="TCharacterID" />
           <ScalarProperty Name="ItemID" ColumnName="ItemID" />
           <ScalarProperty Name="ItemCount" ColumnName="ItemCount" />
+          <ScalarProperty Name="TCharacterID" ColumnName="TCharacterID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

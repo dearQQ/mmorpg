@@ -62,6 +62,12 @@ message NCharacterInfo {
 	int32 level = 6;
 	int32 mapId = 7;
 	NEntity entity = 8;
+	repeated NItemInfo items = 9;
+}
+
+message NItemInfo{
+	int32 id = 1;
+	int32 count = 2;
 }
 
 message NVector3
@@ -175,6 +181,7 @@ message UserGameEnterRequest
 message UserGameEnterResponse {
 	RESULT result = 1;
 	string errormsg = 2;
+	NCharacterInfo character = 3;
 }
 
 message UserGameLeaveRequest

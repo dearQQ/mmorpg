@@ -18,7 +18,7 @@ namespace GameServer
         public TCharacter()
         {
             this.MapID = 1;
-            this.CharecterItems = new HashSet<TCharecterItems>();
+            this.Items = new HashSet<TCharacterItem>();
         }
     
         public int ID { get; set; }
@@ -29,9 +29,10 @@ namespace GameServer
         public int MapPosX { get; set; }
         public int MapPosY { get; set; }
         public int MapPosZ { get; set; }
+        public int TCharacterItemID { get; set; }
     
         public virtual TPlayer Player { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TCharecterItems> CharecterItems { get; set; }
+        public virtual ICollection<TCharacterItem> Items { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 07/02/2019 20:59:26
+-- Date Created: 07/23/2019 10:06:08
 -- Generated from EDMX file: E:\MyMMO\Src\Server\GameServer\GameServer\Entities.edmx
 -- --------------------------------------------------
 
@@ -68,16 +68,17 @@ CREATE TABLE [dbo].[Characters] (
     [MapPosX] int  NOT NULL,
     [MapPosY] int  NOT NULL,
     [MapPosZ] int  NOT NULL,
+    [TCharacterItemID] int  NOT NULL,
     [Player_ID] int  NOT NULL
 );
 GO
 
--- Creating table 'TCharecterItems'
-CREATE TABLE [dbo].[TCharecterItems] (
+-- Creating table 'CharacterItems'
+CREATE TABLE [dbo].[CharacterItems] (
     [ID] int IDENTITY(1,1) NOT NULL,
-    [TCharacterID] int  NOT NULL,
     [ItemID] int  NOT NULL,
-    [ItemCount] int  NOT NULL
+    [ItemCount] int  NOT NULL,
+    [TCharacterID] int  NOT NULL
 );
 GO
 
@@ -103,9 +104,9 @@ ADD CONSTRAINT [PK_Characters]
     PRIMARY KEY CLUSTERED ([ID] ASC);
 GO
 
--- Creating primary key on [ID] in table 'TCharecterItems'
-ALTER TABLE [dbo].[TCharecterItems]
-ADD CONSTRAINT [PK_TCharecterItems]
+-- Creating primary key on [ID] in table 'CharacterItems'
+ALTER TABLE [dbo].[CharacterItems]
+ADD CONSTRAINT [PK_CharacterItems]
     PRIMARY KEY CLUSTERED ([ID] ASC);
 GO
 
@@ -143,18 +144,18 @@ ON [dbo].[Characters]
     ([Player_ID]);
 GO
 
--- Creating foreign key on [TCharacterID] in table 'TCharecterItems'
-ALTER TABLE [dbo].[TCharecterItems]
-ADD CONSTRAINT [FK_CharecterItems]
+-- Creating foreign key on [TCharacterID] in table 'CharacterItems'
+ALTER TABLE [dbo].[CharacterItems]
+ADD CONSTRAINT [FK_CharacterItem]
     FOREIGN KEY ([TCharacterID])
     REFERENCES [dbo].[Characters]
         ([ID])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_CharecterItems'
-CREATE INDEX [IX_FK_CharecterItems]
-ON [dbo].[TCharecterItems]
+-- Creating non-clustered index for FOREIGN KEY 'FK_CharacterItem'
+CREATE INDEX [IX_FK_CharacterItem]
+ON [dbo].[CharacterItems]
     ([TCharacterID]);
 GO
 
