@@ -143,15 +143,13 @@ namespace GameServer.Services
 
             //加入到CharacterManager
             Character character = CharacterManager.Instance.AddCharacter(Tchar);
-            if (character != null)
-            {
-                NetMessage message = new NetMessage();
-                message.Response = new NetMessageResponse();
-                message.Response.gameEnter = new UserGameEnterResponse();
-                message.Response.gameEnter.Result = Result.Success;
-                message.Response.gameEnter.Errormsg = "none";
-                sender.SendData(message);
-            }
+            NetMessage message = new NetMessage();
+            message.Response = new NetMessageResponse();
+            message.Response.gameEnter = new UserGameEnterResponse();
+            message.Response.gameEnter.Result = Result.Success;
+            message.Response.gameEnter.Errormsg = "none";
+            message.Response.gameEnter.Character = character.Info;
+            sender.SendData(message);
 			sender.Session.Character = character;
             MapManager.Instance[Tchar.MapID].CharacterEnter(sender, character);
         }

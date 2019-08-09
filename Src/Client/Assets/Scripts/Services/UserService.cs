@@ -7,6 +7,7 @@ using Network;
 using UnityEngine;
 using Models;
 using SkillBridge.Message;
+using Managers;
 
 namespace Services
 {
@@ -122,7 +123,11 @@ namespace Services
         }
         void OnGameEnterResponse(object sender,UserGameEnterResponse response)
         {
-            
+            if (response.Result == Result.Success)
+            {
+                if (response.Character != null)
+                    ItemManager.Instance.Init(response.Character.Items);
+            }
         }
         public void SendGameLeave()
         {
