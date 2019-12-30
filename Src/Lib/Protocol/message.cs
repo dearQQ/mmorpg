@@ -71,6 +71,9 @@ namespace SkillBridge.Message
         [global::ProtoBuf.ProtoMember(9, Name = @"items")]
         public global::System.Collections.Generic.List<NItemInfo> Items { get; } = new global::System.Collections.Generic.List<NItemInfo>();
 
+        [global::ProtoBuf.ProtoMember(10)]
+        public NBagInfo Bag { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -85,6 +88,21 @@ namespace SkillBridge.Message
 
         [global::ProtoBuf.ProtoMember(2, Name = @"count")]
         public int Count { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class NBagInfo : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public int Unlocked { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public byte[] Items { get; set; }
 
     }
 

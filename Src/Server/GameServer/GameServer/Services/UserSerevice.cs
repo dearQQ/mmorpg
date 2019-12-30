@@ -149,8 +149,23 @@ namespace GameServer.Services
             message.Response.gameEnter.Result = Result.Success;
             message.Response.gameEnter.Errormsg = "none";
             message.Response.gameEnter.Character = character.Info;
+
+
+            int itemId = 1;
+            bool hasItem = character.ItemManager.HasItem(itemId);
+            Log.InfoFormat("hasItem{0},{1}", itemId, hasItem);
+
+            if (hasItem)
+            {
+                character.ItemManager.RemoveItem(itemId, 1);
+            }
+            else
+                character.ItemManager.AddItem(itemId, 2);
+
+            Models.Item item = character.ItemManager.GetItem(itemId);
+            Log.InfoFormat("item:{0},count{1}", itemId, item.Count);
+            sender.Session.Character = character;
             sender.SendData(message);
-			sender.Session.Character = character;
             MapManager.Instance[Tchar.MapID].CharacterEnter(sender, character);
         }
         void OnGameLeave(NetConnection<NetSession> sender, UserGameLeaveRequest request)

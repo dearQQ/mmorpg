@@ -18,9 +18,18 @@ namespace Managers
             {
                 Item item = new Item(info);
                 this.Items.Add(item.Id, item);
+                UnityEngine.Debug.LogFormat("item:{0},{1}", item.Id, item.Count);
             }
         }
-         
 
+        public ItemDefine GetItemCfg(int itemid)
+        {
+            return null;
+        }
+
+        public bool UseItem(int itemid)
+        {
+            return false;
+        }
     }
 }

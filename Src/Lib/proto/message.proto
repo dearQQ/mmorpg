@@ -63,11 +63,17 @@ message NCharacterInfo {
 	int32 mapId = 7;
 	NEntity entity = 8;
 	repeated NItemInfo items = 9;
+	NBagInfo Bag = 10;
 }
 
 message NItemInfo{
 	int32 id = 1;
 	int32 count = 2;
+}
+
+message NBagInfo{
+	int32 Unlocked = 1;
+	bytes Items = 2;
 }
 
 message NVector3
@@ -231,3 +237,5 @@ message MapTeleportResponse
 {
 	int32 teleporterId = 1;
 }
+
+

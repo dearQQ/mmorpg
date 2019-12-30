@@ -24,7 +24,7 @@ namespace GameServer.Services
 
         public void Save()
         {
-            entities.SaveChangesAsync();
+            entities.SaveChanges();
         }
     }
 }

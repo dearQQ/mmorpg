@@ -40,3 +40,17 @@ E:\MyMMO\Src\Lib\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
 E:\MyMMO\Src\Lib\Common\obj\Debug\Common.csproj.CopyComplete
 E:\MyMMO\Src\Lib\Common\obj\Debug\Common.dll
 E:\MyMMO\Src\Lib\Common\obj\Debug\Common.pdb
+D:\Work\mymmo\MyMMO\Src\Lib\Common\bin\Debug\Common.dll
+D:\Work\mymmo\MyMMO\Src\Lib\Common\bin\Debug\Common.pdb
+D:\Work\mymmo\MyMMO\Src\Lib\Common\bin\Debug\log4net.dll
+D:\Work\mymmo\MyMMO\Src\Lib\Common\bin\Debug\protobuf-net.dll
+D:\Work\mymmo\MyMMO\Src\Lib\Common\bin\Debug\Protocol.dll
+D:\Work\mymmo\MyMMO\Src\Lib\Common\bin\Debug\UnityEngine.dll
+D:\Work\mymmo\MyMMO\Src\Lib\Common\bin\Debug\Protocol.pdb
+D:\Work\mymmo\MyMMO\Src\Lib\Common\bin\Debug\log4net.xml
+D:\Work\mymmo\MyMMO\Src\Lib\Common\bin\Debug\protobuf-net.xml
+D:\Work\mymmo\MyMMO\Src\Lib\Common\obj\Debug\Common.csprojAssemblyReference.cache
+D:\Work\mymmo\MyMMO\Src\Lib\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+D:\Work\mymmo\MyMMO\Src\Lib\Common\obj\Debug\Common.csproj.CopyComplete
+D:\Work\mymmo\MyMMO\Src\Lib\Common\obj\Debug\Common.dll
+D:\Work\mymmo\MyMMO\Src\Lib\Common\obj\Debug\Common.pdb

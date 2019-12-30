@@ -2,6 +2,7 @@
 using GameServer.Entities;
 using GameServer.Models;
 using GameServer.Services;
+using SkillBridge.Message;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -89,6 +90,14 @@ namespace GameServer.Managers
             item.Remove(count);
             DBService.Instance.Save();
             return true;
+        }
+
+        public void GetItemInfos(List<NItemInfo> list)
+        {
+            foreach (var item in Items)
+            {
+                list.Add(new NItemInfo() { Id = item.Value.ItemID, Count = item.Value.Count });
+            }
         }
 
     }
